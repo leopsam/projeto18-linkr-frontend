@@ -1,6 +1,6 @@
 import HeaderStyled from "../style/pages/Header.styled";
 import styled from 'styled-components';
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { AiOutlineDown } from "react-icons/ai"
 import { IconContext } from "react-icons"
 
