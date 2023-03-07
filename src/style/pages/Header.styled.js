@@ -11,6 +11,7 @@ const HeaderStyled = styled.div`
     height: 72px;
     left: 0px;
     top: 0px;
+    z-index: 1;
     h1{
         font-family: 'Passion One';
         font-style: normal;
