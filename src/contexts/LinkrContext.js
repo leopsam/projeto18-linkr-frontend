@@ -1,21 +1,14 @@
 import { createContext, useState } from 'react'
 import { ThreeCircles, Bars } from 'react-loader-spinner'
 
-export const LagContext = createContext({})
+export const linkrContext = createContext({})
 
 export function UserProvider( {children} ) {  
     const REACT_APP_API_URL = process.env.REACT_APP_API_URL
-    const [userName, setUserName] = useState("")
-    const [userId, setUserId] = useState("")
-    const [avata, setAvata] = useState("")
     const [token, setToken] = useState()
-    const [products, setProducts] = useState(undefined)
-    const [idGame, setIdGame] = useState(undefined)
-    const [game, setGame] = useState(undefined)
-    const [tipo, setTipo] = useState("")
-    const [count, setCount] = useState(2) 
-    const inputDesbotado = "#F2F2F2"
-    const inputAtivo = "#FFFFFF"
+    const [infoUser, setInfoUser] = useState({})
+    const inputFaded = "#F2F2F2"
+    const activeInput = "#FFFFFF"
     const load = <ThreeCircles
         height="100"
         width="100"
@@ -40,32 +33,19 @@ export function UserProvider( {children} ) {
     /> 
 
   return (
-    <LagContext.Provider value={{
-        products,
-        setProducts,
+    <linkrContext.Provider value={{        
         load,
-        botaoLoading,
-        idGame, 
-        setIdGame,
-        game,
-        setGame,
-        inputDesbotado,
-        inputAtivo,
-        REACT_APP_API_URL,
-        userId,
-        setUserId,
+        botaoLoading,       
+        inputFaded,
+        activeInput,
+        REACT_APP_API_URL,       
         token,
         setToken,
-        userName,
-        setUserName,
-        setAvata,
-        avata,
-        setTipo,
-        tipo,
-        count,
-        setCount,
+        infoUser,
+        setInfoUser
+      
     }}>
       {children}
-    </LagContext.Provider>
+    </linkrContext.Provider>
   )
 }
