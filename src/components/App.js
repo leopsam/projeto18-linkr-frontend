@@ -10,7 +10,7 @@ export default function App() {
       <UserProvider>
         <Routes>
           <Route path="/" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/sign-up" element={<Signup />} />
           <Route path="/timeline" element={<Timeline />} />
         </Routes>
       </UserProvider>
