@@ -1,5 +1,6 @@
 import HeaderStyled from "./styled.js";
 import Menu from "../../style/Logout.styled";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { IconContext } from "react-icons";
@@ -16,6 +17,8 @@ export default function LinkSignup() {
     setInfoUser({});
     setToken("");
     navegacao("/");
+    Cookies.remove("email");
+    Cookies.remove("password");
   }
 
   return (
@@ -30,9 +33,9 @@ export default function LinkSignup() {
             }}
           >
             {open ? (
-              <AiOutlineDown onClick={() => setOpen(!open)} />
-            ) : (
               <AiOutlineUp onClick={() => setOpen(!open)} />
+            ) : (
+              <AiOutlineDown onClick={() => setOpen(!open)} />
             )}
           </IconContext.Provider>
           <img data-test="avatar" src={infoUser.pictureUrl} alt="profile" />
