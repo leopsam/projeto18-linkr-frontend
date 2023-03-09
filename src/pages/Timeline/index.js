@@ -3,11 +3,12 @@ import BodyStyled from "../../style/Body.styled";
 import Post from "../../components/Post";
 import Cookies from "js-cookie";
 import { mockPost } from "../../mock/mockPost";
-import { linkrContext } from "../../contexts/LinkrContext"; ///////
-import { useContext, useEffect } from "react"; //////
-import { getCurrentUser, signIn } from "../../services/linkr-api"; /////
+import { linkrContext } from "../../contexts/LinkrContext";
+import { useContext, useEffect } from "react"; 
+import { getCurrentUser, signIn } from "../../services/linkr-api"; 
+
 export default function Timeline() {
-  const { token, setToken, setInfoUser } = useContext(linkrContext); ////////////
+  const { token, setToken, setInfoUser } = useContext(linkrContext); 
 
   useEffect(() => {
     async function persistLogin() {
