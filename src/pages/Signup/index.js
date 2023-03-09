@@ -11,7 +11,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { signUp } from "../../services/linkr-api";
 
 export default function Login() {
-  const { botaoLoading, activeInput, inputFaded } = useContext(linkrContext);
+  const { botaoLoading } = useContext(linkrContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -48,51 +48,55 @@ export default function Login() {
       <SigninContainer>
         <Form onSubmit={signup}>
           <Input
+            data-test="email"
             id="email"
             type="email"
             placeholder="e-mail"
             value={email}
             disabled={disabledValue}
-            corFundo={disabledValue ? inputFaded : activeInput}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Input
+            data-test="password"
             id="password"
             type="password"
             placeholder="password"
             value={password}
             disabled={disabledValue}
-            corFundo={disabledValue ? inputFaded : activeInput}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           <Input
+            data-test="username"
             id="username"
             type="username"
             placeholder="username"
             value={username}
             disabled={disabledValue}
-            corFundo={disabledValue ? inputFaded : activeInput}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
           <Input
+            data-test="picture-url"
             id="pictureUrl"
             type="url"
             placeholder="picture url"
             value={pictureUrl}
             disabled={disabledValue}
-            corFundo={disabledValue ? inputFaded : activeInput}
             onChange={(e) => setPictureUrl(e.target.value)}
             required
           />
-          <Button data-test="sign-in-submit" disabled={disabledValue} type="submit">
+          <Button
+            data-test="sing-up-btn"
+            disabled={disabledValue}
+            type="submit"
+          >
             {buttonText}
           </Button>
         </Form>
         <LinkSignUp>
-          <Link to={`/`}>
+          <Link data-test="login-link" to={`/`}>
             <p>Switch back to log in</p>
           </Link>
         </LinkSignUp>

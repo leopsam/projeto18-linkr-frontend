@@ -11,7 +11,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { getCurrentUser, signIn } from "../../services/linkr-api";
 
 export default function Login() {
-  const { botaoLoading, activeInput, inputFaded, setInfoUser, setToken } = useContext(linkrContext);
+  const { botaoLoading, setInfoUser, setToken } = useContext(linkrContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [buttonText, setButtonText] = useState("Log In");
@@ -51,31 +51,31 @@ export default function Login() {
       <SigninContainer>
         <Form onSubmit={signin}>
           <Input
+            data-test="email"
             id="email"
             type="email"
             placeholder="e-mail"
             value={email}
             disabled={disabledValue}
-            corFundo={disabledValue ? inputFaded : activeInput}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Input
+            data-test="password"
             id="password"
             type="password"
             placeholder="password"
             value={password}
             disabled={disabledValue}
-            corFundo={disabledValue ? inputFaded : activeInput}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button data-test="sign-in-submit" disabled={disabledValue} type="submit">
+          <Button data-test="login-btn" disabled={disabledValue} type="submit">
             {buttonText}
           </Button>
         </Form>
         <LinkSignUp>
-          <Link to={`/signup`}>
+          <Link data-test="sign-up-link" to={`/signup`}>
             <p>First time? Create an account!</p>
           </Link>
         </LinkSignUp>
