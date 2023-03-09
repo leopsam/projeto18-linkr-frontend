@@ -1,7 +1,7 @@
 import HeaderStyled from "./styled.js";
 import Menu from "../../style/Logout.styled";
 import { useState } from "react";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { linkrContext } from "../../contexts/LinkrContext";
 import { useContext } from "react";
@@ -23,14 +23,25 @@ export default function LinkSignup() {
       <HeaderStyled>
         <h1>linkr</h1>
         <div>
-          <IconContext.Provider value={{ color: "#FFFFFF", size: "30px" }}>
-            <AiOutlineDown onClick={() => setOpen(!open)} />
+          <IconContext.Provider
+            value={{
+              color: "#FFFFFF",
+              size: "30px",
+            }}
+          >
+            {open ? (
+              <AiOutlineDown onClick={() => setOpen(!open)} />
+            ) : (
+              <AiOutlineUp onClick={() => setOpen(!open)} />
+            )}
           </IconContext.Provider>
-          <img src={infoUser.pictureUrl} alt="profile" />
+          <img data-test="avatar" src={infoUser.pictureUrl} alt="profile" />
         </div>
       </HeaderStyled>
-      <Menu open={open}>
-        <p onClick={() => logout()}>Logout</p>
+      <Menu data-test="menu" open={open}>
+        <p data-test="logout" onClick={() => logout()}>
+          Logout
+        </p>
       </Menu>
     </>
   );
