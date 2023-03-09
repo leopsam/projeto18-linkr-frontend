@@ -70,11 +70,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button
-            data-test="sign-in-btn"
-            disabled={disabledValue}
-            type="submit"
-          >
+          <Button data-test="login-btn" disabled={disabledValue} type="submit">
             {buttonText}
           </Button>
         </Form>
