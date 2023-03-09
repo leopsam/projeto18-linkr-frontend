@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     html, body, div, span, applet, object, iframe,
@@ -44,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
+    
     strong {
     font-weight: bold;
     }
@@ -51,10 +52,15 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     transition: all ease .2s;
     }
-    body {
-    font-family: 'Arvo', serif;
-    background-color: #E5E5E5;
-    }
-`
 
-export default GlobalStyle
+    body {
+    font-family: 'Lato', sans-serif;
+    background: #333;
+    }
+
+    a {
+        text-decoration: none;
+    }
+`;
+
+export default GlobalStyle;
