@@ -4,11 +4,14 @@ import Post from "../../components/Post";
 import Cookies from "js-cookie";
 import { mockPost } from "../../mock/mockPost";
 import { linkrContext } from "../../contexts/LinkrContext";
-import { useContext, useEffect } from "react"; 
-import { getCurrentUser, signIn } from "../../services/linkr-api"; 
+import { useContext, useEffect } from "react";
+import { getCurrentUser, signIn } from "../../services/linkr-api";
+import { useNavigate } from "react-router-dom";
 
 export default function Timeline() {
-  const { token, setToken, setInfoUser } = useContext(linkrContext); 
+  const { setToken, setInfoUser } = useContext(linkrContext);
+  const navigate = useNavigate();
+  const posts = mockPost;
 
   useEffect(() => {
     async function persistLogin() {
@@ -27,12 +30,12 @@ export default function Timeline() {
         Cookies.set("password", password, { expires: 7 });
       } catch (error) {
         alert(error);
+        navigate("/");
       }
     }
     persistLogin();
   }, []);
 
-  const posts = mockPost;
   return (
     <>
       <Header />
