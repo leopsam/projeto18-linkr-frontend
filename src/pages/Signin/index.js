@@ -5,6 +5,7 @@ import SigninContainer from "../../style/ContainerSignin.styled";
 import TitleContainer from "../../style/ContainerTitle.styled";
 import LinkSignUp from "../../style/Link.styled";
 import Form from "../../style/Form.styled";
+import Cookies from "js-cookie";
 import { linkrContext } from "../../contexts/LinkrContext";
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -31,6 +32,9 @@ export default function Login() {
 
       const { data: user } = await getCurrentUser(token);
       setInfoUser(user);
+
+      Cookies.set("email", email, { expires: 7 });
+      Cookies.set("password", password, { expires: 7 });
 
       navigate("/timeline");
     } catch (error) {
