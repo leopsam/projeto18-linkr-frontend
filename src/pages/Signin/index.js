@@ -75,7 +75,7 @@ export default function Login() {
           </Button>
         </Form>
         <LinkSignUp>
-          <Link data-test="sign-up-link" to={`/signup`}>
+          <Link data-test="sign-up-link" to={`/sign-up`}>
             <p>First time? Create an account!</p>
           </Link>
         </LinkSignUp>
