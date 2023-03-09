@@ -88,7 +88,7 @@ export default function Login() {
             required
           />
           <Button
-            data-test="sing-up-btn"
+            data-test="sign-up-btn"
             disabled={disabledValue}
             type="submit"
           >
