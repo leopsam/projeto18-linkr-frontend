@@ -1,0 +1,6 @@
+FROM node:lts-alpine
+
+RUN apk add --update --no-cache \
+    build-base \
+    cmake \
+    bash
