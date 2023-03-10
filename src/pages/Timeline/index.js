@@ -7,6 +7,7 @@ import { linkrContext } from "../../contexts/LinkrContext";
 import { useContext, useEffect } from "react";
 import { getCurrentUser, signIn } from "../../services/linkr-api";
 import { useNavigate } from "react-router-dom";
+import PostCreator from "../../components/PostCreator";
 
 export default function Timeline() {
   const { setToken, setInfoUser } = useContext(linkrContext);
@@ -34,13 +35,15 @@ export default function Timeline() {
       }
     }
     persistLogin();
-  }, []);
+  }, [navigate, setInfoUser, setToken]);
 
   return (
     <>
       <Header />
       <BodyStyled>
         <div>
+          <h4>Timeline</h4>
+          <PostCreator />
           {posts.map((post) => (
             <Post key={post.postId} {...post} />
           ))}

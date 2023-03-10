@@ -11,7 +11,7 @@ export function UserProvider({ children }) {
       height="30"
       width="80"
       radius="9"
-      color="#ffffff"
+      color="white"
       ariaLabel="bars-loading"
       wrapperStyle={{}}
       wrapperClassName=""
