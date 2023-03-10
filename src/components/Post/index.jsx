@@ -4,6 +4,9 @@ import Meta from "../Meta";
 
 import { useState } from "react";
 import LikeIcon from "../LikeIcon";
+import { FaPencilAlt, FaTrash } from "react-icons/fa";
+import { IconContext } from "react-icons";
+
 export default function Post({
   id,
   content,
@@ -35,7 +38,25 @@ export default function Post({
         <p>{likesQty} likes</p>
       </div>
       <div>
-        <h2>{username}</h2>
+        <div>
+          <h2>{username}</h2>
+          <IconContext.Provider
+            value={{
+              color: "#fff",
+              size: "16px",
+              cursor: "pointer"
+            }}>
+            <FaPencilAlt />
+          </IconContext.Provider>
+          <IconContext.Provider
+            value={{
+              color: "#fff",
+              size: "16px",
+              cursor: "pointer"
+            }}>
+            <FaTrash />
+          </IconContext.Provider>
+        </div>
         <ReactTagify tagStyle={{ color: "#fff", fontWeight: 700 }}>
           <p>{content}</p>
         </ReactTagify>

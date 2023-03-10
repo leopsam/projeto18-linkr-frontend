@@ -16,6 +16,7 @@ const StyledPost = styled.div`
     color: #fff;
     font-size: 19px;
     line-height: 23px;
+    margin-right: auto;
   }
 
   p {
@@ -48,6 +49,11 @@ const StyledPost = styled.div`
 
       margin-top: 4px;
     }
+  }
+
+  & > div > div {
+    display: flex;
+    gap: 10px;
   }
 `;
 
