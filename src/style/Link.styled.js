@@ -15,6 +15,11 @@ const LinkSignUp = styled.div`
     a{
         text-decoration: none;
     }
+    @media (max-width: 768px) {
+        p{
+            font-size: 17px;
+        }
+    }
 `
 
 export default LinkSignUp;

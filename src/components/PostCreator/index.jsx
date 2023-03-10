@@ -8,16 +8,18 @@ import { CardStyled, FormStyled, InputStyled, TextAreaStyled } from "./styled";
 const PostCreator = () => {
   const [content, setContent] = useState("");
   const [sharedUrl, setSharedUrl] = useState("");
-  const [disabled, setDisabled] = useState(false);
+  const [disabledValue, setDisabledValue] = useState(false);
+  const [buttonText, setButtonText] = useState("Publish");
   const {
     infoUser: { pictureUrl, username },
-    botaoLoader,
+    botaoLoading,
     token,
   } = useContext(linkrContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setDisabled(true);
+    setDisabledValue(true);
+    setButtonText(botaoLoading);
 
     // falta fazer um parser de context com regex, encontrar as hashtags e enviar request pra criar da ligacao
     // na table hashtag_posts, estou com sono logo paro por aqui
@@ -31,7 +33,8 @@ const PostCreator = () => {
 
     setContent("");
     setSharedUrl("");
-    setDisabled(false);
+    setDisabledValue(false);
+    setButtonText("Publish");
     //falta charmar de novo a funcao fetchData pra atualizar os posts (ja tem getPosts em services)
   };
 
@@ -46,8 +49,8 @@ const PostCreator = () => {
           onChange={(e) => setContent(e.target.value)}
           placeholder="Awesome article about #javascript"
         />
-        <Button width={"112px"} height={"31px"} fontSize={"14px"}>
-          {disabled ? botaoLoader : <p>Publish</p>}
+        <Button disabled={disabledValue} width={"112px"} height={"31px"} fontSize={"14px"}>
+          <p>{buttonText}</p>
         </Button>
       </FormStyled>
     </CardStyled>

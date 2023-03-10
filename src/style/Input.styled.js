@@ -18,5 +18,9 @@ const Input = styled.input`
   ::placeholder {
     color: #9f9f9f;
   }
+  @media (max-width: 768px) {
+    width: 330px;
+    height: 55px;
+  }
 `;
 export default Input;

@@ -7,6 +7,7 @@ const BodyStyled = styled.div`
   background-color: #333333;
   width: 100vw;
   height: 100vh;
+ 
   div > h4 {
     margin-top: 78px;
     margin-bottom: 43px;

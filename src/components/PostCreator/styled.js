@@ -28,7 +28,7 @@ export const FormStyled = styled.form`
   align-items: flex-end;
   justify-content: space-between;
   p {
-    font-size: 20px;
+    font-size: 14px;
     font-family: "Lato", sans-serif !important;
   }
   width: 502px;

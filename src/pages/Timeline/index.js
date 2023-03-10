@@ -9,8 +9,10 @@ import { getCurrentUser, signIn } from "../../services/linkr-api";
 import { useNavigate } from "react-router-dom";
 import PostCreator from "../../components/PostCreator";
 
+
 export default function Timeline() {
   const { setToken, setInfoUser } = useContext(linkrContext);
+ 
   const navigate = useNavigate();
   const posts = mockPost;
 

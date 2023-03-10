@@ -8,5 +8,8 @@ const SigninContainer = styled.div`
     height: 100vh;
     width: 100vw;
     background-color: #333333;
+    @media (max-width: 768px) {
+        height: 80vh;
+    } 
 `
 export default SigninContainer;

@@ -8,7 +8,7 @@ const Button = styled.button`
   font-family: "Oswald", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: ${(props) => props.fontSize || "27px"} !important;
+  font-size: "27px";
   line-height: 40px;
   color: #ffffff;
   border: none;
@@ -17,6 +17,16 @@ const Button = styled.button`
   justify-content: center;
   margin: 5px 0;
   cursor: pointer;
+  p{
+    font-family: "lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: "14px"
+  }
+  @media (max-width: 768px) {
+    width: 330px;
+    height: 55px;   
+  }
 `;
 
 export default Button;

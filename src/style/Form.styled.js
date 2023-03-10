@@ -6,6 +6,9 @@ const Form = styled.form`
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+    @media (max-width: 768px) {
+        margin: 10px 0;
+    }
 `
 
 export default Form;
