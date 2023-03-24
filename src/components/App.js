@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserProvider } from "../contexts/LinkrContext";
-import Signin from "../pages/Signin/index";
-import Signup from "../pages/Signup/index";
-import Timeline from "../pages/Timeline/index";
+import Signin from "../pages/Signin";
+import Signup from "../pages/Signup";
+import Timeline from "../pages/Timeline";
 
 export default function App() {
   return (

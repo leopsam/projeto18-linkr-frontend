@@ -1,42 +1,47 @@
-import Button from "../../style/button.styled";
-import Input from "../../style/Input.styled";
-import ContainerPage from "../../style/ContainerPage.styled";
-import SigninContainer from "../../style/ContainerSignin.styled";
-import TitleContainer from "../../style/ContainerTitle.styled";
-import LinkSignUp from "../../style/Link.styled";
-import Form from "../../style/Form.styled";
-import { linkrContext } from "../../contexts/LinkrContext";
-import { useContext, useState } from "react";
+import Button from "../style/AuthButton.styled";
+import Input from "../style/AuthInput.styled";
+import ContainerPage from "../style/AuthContainerPage.styled";
+import SigninContainer from "../style/AuthContainerSign.styled";
+import TitleContainer from "../style/AuthContainerTitle.styled";
+import LinkSignUp from "../style/AuthLink.styled";
+import Form from "../style/AuthForm.styled";
+import axios from "axios";
+import ButtonLoading from "../components/ButtonLoading";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signUp } from "../../services/linkr-api";
 
 export default function Login() {
-  const { botaoLoading } = useContext(linkrContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [pictureUrl, setPictureUrl] = useState("");
+  const [picture_url, setPictureUrl] = useState("");
   const [buttonText, setButtonText] = useState("Sign Up");
   const [disabledValue, setDisabledValue] = useState("");
   const navegate = useNavigate();
 
-  const signup = async (e) => {
+  function signup(e) {
     e.preventDefault();
-    setButtonText(botaoLoading);
+    setButtonText(ButtonLoading);
     setDisabledValue("disabled");
 
-    try {
-      await signUp({ email, password, username, pictureUrl });
+    const body = { email, password, username, picture_url }
+    const url = process.env.REACT_APP_API_URL + "/sign-up"
+    const promise = axios.post(url, body)
 
-      navegate("/");
-      alert("successfully registered user");
-    } catch (error) {
-      setButtonText("Sign Up");
-      setDisabledValue("");
-      alert(error);
-    }
-  };
+    promise.then((res) => {      
+      alert("User created successfully")
+      navegate('/')
+  })
 
+    promise.catch(err => { 
+      setButtonText("Sign Up") 
+      setDisabledValue("")
+      alert("Invalid or existing user information") 
+      console.log(err.response.data)     
+      console.log(url)       
+    })
+  }
+  
   return (
     <ContainerPage>
       <TitleContainer>
@@ -82,7 +87,7 @@ export default function Login() {
             id="pictureUrl"
             type="url"
             placeholder="picture url"
-            value={pictureUrl}
+            value={picture_url}
             disabled={disabledValue}
             onChange={(e) => setPictureUrl(e.target.value)}
             required

@@ -9,7 +9,7 @@ const SigninContainer = styled.div`
     width: 100vw;
     background-color: #333333;
     @media (max-width: 768px) {
-        height: 80vh;
+        justify-content: flex-start;
     } 
 `
 export default SigninContainer;

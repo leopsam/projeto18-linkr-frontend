@@ -7,7 +7,7 @@ const Form = styled.form`
     align-items: center;
     margin: 20px 0;
     @media (max-width: 768px) {
-        margin: 10px 0;
+        margin: 30px 0 10px;
     }
 `
 

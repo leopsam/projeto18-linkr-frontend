@@ -1,48 +1,49 @@
-import Button from "../../style/button.styled";
-import Input from "../../style/Input.styled";
-import ContainerPage from "../../style/ContainerPage.styled";
-import SigninContainer from "../../style/ContainerSignin.styled";
-import TitleContainer from "../../style/ContainerTitle.styled";
-import LinkSignUp from "../../style/Link.styled";
-import Form from "../../style/Form.styled";
+import Button from "../style/AuthButton.styled";
+import Input from "../style/AuthInput.styled";
+import ContainerPage from "../style/AuthContainerPage.styled";
+import SigninContainer from "../style/AuthContainerSign.styled";
+import TitleContainer from "../style/AuthContainerTitle.styled";
+import LinkSignUp from "../style/AuthLink.styled";
+import Form from "../style/AuthForm.styled";
 import Cookies from "js-cookie";
-import { linkrContext } from "../../contexts/LinkrContext";
-import { useContext, useState } from "react";
+import axios from "axios";
+import ButtonLoading from "../components/ButtonLoading";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { getCurrentUser, signIn } from "../../services/linkr-api";
 
-export default function Login() {
-  const { botaoLoading, setInfoUser, setToken } = useContext(linkrContext);
+export default function Login() {  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [buttonText, setButtonText] = useState("Log In");
   const [disabledValue, setDisabledValue] = useState("");
   const navigate = useNavigate();
-
-  const signin = async (e) => {
+  
+  function signin(e) {
     e.preventDefault();
-    setButtonText(botaoLoading);
+    setButtonText(ButtonLoading);
     setDisabledValue("disabled");
 
-    try {
-      const {
-        data: { token },
-      } = await signIn({ email, password });
-      setToken(token);
+    const body = { email, password }
+    const url = process.env.REACT_APP_API_URL + "/sign-in"
+    const promise = axios.post(url, body)
 
-      const { data: user } = await getCurrentUser(token);
-      setInfoUser(user);
-
+    promise.then((res) => { 
       Cookies.set("email", email, { expires: 7 });
       Cookies.set("password", password, { expires: 7 });
-
-      navigate("/timeline");
-    } catch (error) {
-      setButtonText("Log In");
-      setDisabledValue("");
-      alert(error);
-    }
-  };
+      Cookies.set("username", res.data.user.username, { expires: 7 });
+      Cookies.set("picture_url", res.data.user.picture_url, { expires: 7 });
+      Cookies.set("token", res.data.token, { expires: 7 });
+      alert("User logged in successfully")
+      navigate('/timeline')
+  })
+  
+    promise.catch(err => { 
+      setButtonText("Log in") 
+      setDisabledValue("")
+      alert("Invalid email or password") 
+      console.log(err.response.data)    
+    })
+  }
 
   return (
     <ContainerPage>
@@ -75,7 +76,7 @@ export default function Login() {
             required
           />
           <Button data-test="login-btn" disabled={disabledValue} type="submit">
-            {buttonText}
+            <p>{buttonText}</p>
           </Button>
         </Form>
         <LinkSignUp>

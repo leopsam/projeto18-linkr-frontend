@@ -34,21 +34,23 @@ const TitleContainer = styled.div`
         }
             @media (max-width: 768px) {
                 flex-direction: column;
-                height: 173px;
-                width: 150vw;
+                align-items: center;
+                justify-content: center;
+                height: 173px;   
+                width: 100vw; 
                 div{
                     display: flex;                   
                     align-items: center;
                     justify-content: center;                    
                     margin-right: 0;
+                    width: 80%;       
                     }
                 h1{
                         font-family: 'Passion One', cursive;
                         font-style: normal;
                         font-weight: 700;
                         font-size: 76px;
-                        line-height: 83.68px;
-                        
+                        line-height: 83.68px; 
                     }
                 h2{
                         font-family: 'Oswald', sans-serif;
@@ -56,9 +58,8 @@ const TitleContainer = styled.div`
                         font-weight: 700;
                         font-size: 23px;
                         line-height: 34.09px;
-                        width: 237px;
-                        height: 68px;
-                        
+                        text-align: center;
+                        width: 237px;        
                     }
             }
 
