@@ -36,7 +36,7 @@ const PostCreator = () => {
   };
 
   return (
-    <CardStyled>
+    <CardStyled data-test="publish-box">
       <img src={picture_url} alt={username} />
       <Form onSubmit={handleSubmit}>
         <h3>What are you going to share today?</h3>

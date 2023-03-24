@@ -33,7 +33,7 @@ export default function Login() {
       Cookies.set("username", res.data.user.username, { expires: 7 });
       Cookies.set("picture_url", res.data.user.picture_url, { expires: 7 });
       Cookies.set("token", res.data.token, { expires: 7 });
-      //alert("User logged in successfully")
+      alert("User logged in successfully")
       navigate('/timeline')
   })
 
