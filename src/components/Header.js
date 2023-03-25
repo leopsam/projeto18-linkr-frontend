@@ -56,7 +56,7 @@ export default function LinkSignup() {
           />        
           <SearchContainer>
             {result.map((r) => (
-              <UsersSearch key={r.id}>
+              <UsersSearch data-test="user-search" key={r.id}>
                 <div>
                   <img src={r.picture_url} alt="profile" />
                   <p>{r.username}</p>                  

@@ -41,16 +41,18 @@ const PostCreator = () => {
       <Form onSubmit={handleSubmit}>
         <h3>What are you going to share today?</h3>
         <InputStyled 
+          data-test="link"
           value={sharedUrl} 
           onChange={(e) => setSharedUrl(e.target.value)} 
           placeholder="http://..." 
         />
         <TextAreaStyled
+        data-test="description"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Awesome article about #javascript"
         />
-        <Button disabled={disabledValue}>{buttonText}</Button>
+        <Button data-test="publish-btn" disabled={disabledValue}>{buttonText}</Button>
       </Form>
     </CardStyled>
   );
