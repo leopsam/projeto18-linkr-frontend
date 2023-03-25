@@ -28,6 +28,7 @@ export default function LinkSignup() {
         <h1>linkr</h1>       
         <Search>          
           <DebounceInput
+            data-test="search"
             minLength={3}
             debounceTimeout={300}
             placeholder = "Search for people"
