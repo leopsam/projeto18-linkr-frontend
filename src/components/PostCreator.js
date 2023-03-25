@@ -28,7 +28,9 @@ export default function PostCreator (){
     promise.then((res) => {      
       alert("post enviado com sucesso") 
       setDisabledValue(false);
-      setButtonText("Publish");     
+      setButtonText("Publish"); 
+      setContent("");
+      setSharedUrl("");    
     })
 
     promise.catch(err => {      
