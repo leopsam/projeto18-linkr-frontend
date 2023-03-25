@@ -17,28 +17,28 @@ export default function PostCreator (){
 
   function handleSubmit(e) {
     e.preventDefault();
-    setDisabledValue(true);
+    setDisabledValue("disabled");
     setButtonText(ButtonLoading);
 
     const body = { content, sharedUrl, user_id }
-    const url = process.env.REACT_APP_API_URL + '/posts'
+    const url = process.env.REACT_APP_API_URL + '/post'
     const promise = axios.post(url, body)
     console.log(url)
 
     promise.then((res) => {      
       alert("post enviado com sucesso") 
-      setDisabledValue(false);
+      setDisabledValue("");
       setButtonText("Publish"); 
       setContent("");
       setSharedUrl("");    
     })
 
     promise.catch(err => {      
-      alert(err.response.data) 
-      console.log(err.response.data)      
+      alert(err.code) 
+      console.log(err.code)      
       setContent("");
       setSharedUrl("");
-      setDisabledValue(false);
+      setDisabledValue("");
       setButtonText("Publish");
     })
   }
