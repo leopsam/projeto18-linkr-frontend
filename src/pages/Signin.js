@@ -28,13 +28,14 @@ export default function Login() {
     const promise = axios.post(url, body)
 
     promise.then((res) => { 
+      navigate('/timeline')
       Cookies.set("email", email, { expires: 7 });
       Cookies.set("password", password, { expires: 7 });
       Cookies.set("username", res.data.user.username, { expires: 7 });
       Cookies.set("picture_url", res.data.user.picture_url, { expires: 7 });
       Cookies.set("token", res.data.token, { expires: 7 });
       alert("User logged in successfully")
-      navigate('/timeline')
+      
   })
 
     promise.catch(err => { 
