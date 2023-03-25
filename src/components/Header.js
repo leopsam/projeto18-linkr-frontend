@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import styled from "styled-components";
-import { useState } from "react";
+import axios from "axios";
+import { useState , useEffect} from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +10,8 @@ import {DebounceInput} from 'react-debounce-input';
 export default function LinkSignup() {
   
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState([]);
+  const [state, setState] = useState(undefined);
+  const [result, setResult] = useState([]);
   const navigate = useNavigate();
   const picture_url = Cookies.get("picture_url");
 
@@ -21,6 +23,23 @@ export default function LinkSignup() {
     Cookies.remove("picture_url");
     Cookies.remove("username");
   }
+  useEffect(() => { 
+        if(!state){setState(undefined)}
+
+        const body = { searchQuery: state }
+        const url = process.env.REACT_APP_API_URL + "mebusca"
+        const promise = axios.post(url, body)
+
+        promise.then((res) => {  
+          console.log(res.data) 
+          console.log(state) 
+          setResult(res.data)  
+        })
+
+        promise.catch(err => {
+          console.log(err.response.data)           
+        })    
+      }, [state])
  
   return (
     <>
@@ -36,7 +55,14 @@ export default function LinkSignup() {
             onChange={(e) => {setState(e.target.value)}} 
           />        
           <SearchContainer>
-              <p>{state}</p>                    
+            {result.map((r) => (
+              <UsersSearch key={r.id}>
+                <div>
+                  <img src={r.picture_url} alt="profile" />
+                  <p>{r.username}</p>                  
+                </div>                
+              </UsersSearch>              
+            ))}                 
           </SearchContainer>
         </Search>      
         <div>
@@ -129,13 +155,17 @@ const Search = styled.div`
     
 `
 const SearchContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
     width: 563px;
     background: #E7E7E7;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    top: 60px;
     @media (max-width: 768px) {
-        width: 1px;            
+                 
     }    
 `
 const Menu = styled.div`   
@@ -159,4 +189,24 @@ const Menu = styled.div`
         color: #FFFFFF;
         cursor: pointer;
     }  
+`
+const UsersSearch = styled.div`
+  position: relative;
+  border-radius: 8px;
+  width: 97%;
+  height: 50px;
+  img{
+    width: 39px;
+    height: 39px;
+  }
+  p{
+    margin: 0 10px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 23px;
+    color: #515151;
+  }
+    
 `

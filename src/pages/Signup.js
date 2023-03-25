@@ -25,7 +25,7 @@ export default function Login() {
     setDisabledValue("disabled");
 
     const body = { email, password, username, picture_url }
-    const url = process.env.REACT_APP_API_URL + "/sign-up"
+    const url = process.env.REACT_APP_API_URL + "sign-up"
     const promise = axios.post(url, body)
 
     promise.then((res) => {      
