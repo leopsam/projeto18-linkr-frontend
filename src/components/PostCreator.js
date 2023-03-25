@@ -29,6 +29,8 @@ export default function PostCreator (){
       //alert("post enviado com sucesso")      
       setContent("");
       setSharedUrl("");
+      setDisabledValue("")
+      setButtonText("Publish"); 
     })
 
     promise.catch(err => {      
@@ -36,12 +38,9 @@ export default function PostCreator (){
       console.log(err.message)      
       setContent("");
       setSharedUrl("");
-    })
-
-    setTimeout(()=>{
       setDisabledValue("")
       setButtonText("Publish"); 
-    }, 2000)
+    })
   }
 
   return (
