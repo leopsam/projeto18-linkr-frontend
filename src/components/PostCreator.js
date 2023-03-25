@@ -21,26 +21,30 @@ export default function PostCreator (){
     setButtonText(ButtonLoading);
 
     const body = { content, sharedUrl, user_id }
-    const url = process.env.REACT_APP_API_URL + '/post'
+    const url = process.env.REACT_APP_API_URL + '/posts'
     const promise = axios.post(url, body)
     console.log(url)
 
     promise.then((res) => {      
-      alert("post enviado com sucesso") 
+      //alert("post enviado com sucesso")      
+      setContent("");
+      setSharedUrl("");  
+      
       setDisabledValue("");
       setButtonText("Publish"); 
-      setContent("");
-      setSharedUrl("");    
     })
 
     promise.catch(err => {      
-      alert(err.code) 
-      console.log(err.code)      
+      alert(err.message) 
+      console.log(err.message)      
       setContent("");
       setSharedUrl("");
+
       setDisabledValue("");
-      setButtonText("Publish");
+      setButtonText("Publish"); 
     })
+
+    
   }
     
 
@@ -55,6 +59,7 @@ export default function PostCreator (){
           value={sharedUrl} 
           onChange={(e) => setSharedUrl(e.target.value)} 
           placeholder="http://..." 
+          disabled={disabledValue}
           required
         />
         <TextAreaStyled
@@ -62,6 +67,7 @@ export default function PostCreator (){
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Awesome article about #javascript"
+          disabled={disabledValue}
           required
         />
         <Button data-test="publish-btn" disabled={disabledValue}>{buttonText}</Button>
