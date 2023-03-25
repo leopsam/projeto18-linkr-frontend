@@ -27,7 +27,7 @@ export default function LinkSignup() {
         if(!state){setState(undefined)}
 
         const body = { searchQuery: state }
-        const url = process.env.REACT_APP_API_URL + "mebusca"
+        const url = process.env.REACT_APP_API_URL + "/mebusca"
         const promise = axios.post(url, body)
 
         promise.then((res) => {  

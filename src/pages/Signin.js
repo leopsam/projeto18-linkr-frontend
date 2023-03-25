@@ -24,8 +24,9 @@ export default function Login() {
     setDisabledValue("disabled");
 
     const body = { email, password }
-    const url = process.env.REACT_APP_API_URL + "/sign-in"
+    const url = process.env.REACT_APP_API_URL + '/sign-in'
     const promise = axios.post(url, body)
+    console.log(url)
 
     promise.then((res) => { 
       navigate('/timeline')
