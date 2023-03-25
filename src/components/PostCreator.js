@@ -32,7 +32,7 @@ export default function PostCreator (){
     })
 
     promise.catch(err => {      
-      alert(err.message) 
+      alert("There was an error publishing your link") 
       console.log(err.message)      
       setContent("");
       setSharedUrl("");
@@ -43,7 +43,7 @@ export default function PostCreator (){
       setButtonText("Publish"); 
     }, 2000)
   }
-  
+
   return (
     <CardStyled data-test="publish-box">
       <img src={picture_url} alt={username} />
