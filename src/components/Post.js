@@ -1,7 +1,7 @@
 import { ReactTagify } from "react-tagify";
 import styled from "styled-components";
 
-import Meta from "./Meta";
+//import Meta from "./Meta";
 
 import { useState } from "react";
 import LikeIcon from "./likeIcon";

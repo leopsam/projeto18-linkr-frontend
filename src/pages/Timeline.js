@@ -20,7 +20,7 @@ export default function Timeline() {
         const email = Cookies.get("email");
         const password = Cookies.get("password");       
         const body = { email, password }
-        const url = process.env.REACT_APP_API_URL + "sign-in"
+        const url = process.env.REACT_APP_API_URL + "/sign-in"
         const promise = axios.post(url, body)
 
         promise.then((res) => {      
