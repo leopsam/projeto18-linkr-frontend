@@ -1,39 +1,47 @@
 import { useState } from "react";
-import { createPost } from "../services/linkr-api";
+//import { createPost } from "../services/linkr-api";
 import styled from "styled-components";
 import Cookies from "js-cookie";
 import ButtonLoading from "../components/ButtonLoading";
+import axios from "axios";
 
-const PostCreator = () => {
+export default function PostCreator (){
   const [content, setContent] = useState("");
   const [sharedUrl, setSharedUrl] = useState("");
   const [disabledValue, setDisabledValue] = useState(false);
   const [buttonText, setButtonText] = useState("Publish");
   const picture_url = Cookies.get("picture_url");
   const username = Cookies.get("username");
-  const token = Cookies.get("token");
+  const user_id = Cookies.get("id");
 
-  const handleSubmit = async (e) => {
+
+  function handleSubmit(e) {
     e.preventDefault();
     setDisabledValue(true);
     setButtonText(ButtonLoading);
 
-    // falta fazer um parser de context com regex, encontrar as hashtags e enviar request pra criar da ligacao
-    // na table hashtag_posts, estou com sono logo paro por aqui
+    const body = { content, sharedUrl, user_id }
+    const url = process.env.REACT_APP_API_URL + '/posts'
+    const promise = axios.post(url, body)
+    console.log(url)
 
-    try {
-      console.log("sharedUrl", sharedUrl);
-      await createPost({ content, sharedUrl, token });
-    } catch (error) {
-      alert(error);
-    }
+    promise.then((res) => {      
+      alert("post enviado com sucesso") 
+      setDisabledValue(false);
+      setButtonText("Publish");     
+    })
 
-    setContent("");
-    setSharedUrl("");
-    setDisabledValue(false);
-    setButtonText("Publish");
-    //falta charmar de novo a funcao fetchData pra atualizar os posts (ja tem getPosts em services)
-  };
+    promise.catch(err => {      
+      alert(err.response.data) 
+      console.log(err.response.data)      
+      setContent("");
+      setSharedUrl("");
+      setDisabledValue(false);
+      setButtonText("Publish");
+    })
+  }
+    
+
 
   return (
     <CardStyled data-test="publish-box">
@@ -45,20 +53,20 @@ const PostCreator = () => {
           value={sharedUrl} 
           onChange={(e) => setSharedUrl(e.target.value)} 
           placeholder="http://..." 
+          required
         />
         <TextAreaStyled
-        data-test="description"
+          data-test="description"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Awesome article about #javascript"
+          required
         />
         <Button data-test="publish-btn" disabled={disabledValue}>{buttonText}</Button>
       </Form>
     </CardStyled>
   );
 };
-
-export default PostCreator;
 
 const CardStyled = styled.div`
   width: 611px;
